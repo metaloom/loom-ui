@@ -12,10 +12,6 @@ import Assets from './Asset/AssetList';
 
 ReactDOM.render((
 <BrowserRouter>
-    <Routes>
-      <Route path="dash" element={<Dashboard/> }/>
-      <Route exact path="/" element={<Login/>}/>
-      <Route exact path="/assets" element={<Assets />}/>
-    </Routes>
+    <Dashboard />
 </BrowserRouter>
 ), document.querySelector('#app'));

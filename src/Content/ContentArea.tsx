@@ -27,7 +27,7 @@ function Copyright(props: any) {
   );
 }
 
-export default function DashboardContentBox() {
+export default function ContentArea() {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
