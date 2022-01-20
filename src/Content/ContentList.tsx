@@ -7,7 +7,7 @@ export default function ContentList() {
   return (
     <React.Fragment>
       <Title>Content List</Title>
-      <MaterialLink component={RouterLink} to="/assets">Assets</MaterialLink>
+      <MaterialLink component={RouterLink} to="/dash/assets">Assets</MaterialLink>
     </React.Fragment>
   );
 }

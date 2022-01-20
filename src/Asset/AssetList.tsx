@@ -8,8 +8,8 @@ export default function AssetList() {
   return (
     <React.Fragment>
       <Title>Asset List</Title>
-      <MaterialLink component={RouterLink} to="/contents">Contents</MaterialLink>
-      <TreeDrawer />
+      <MaterialLink component={RouterLink} to="/dash/contents">Contents</MaterialLink>
     </React.Fragment>
   );
+  //<TreeDrawer /> 
 }
