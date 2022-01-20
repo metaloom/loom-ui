@@ -2,14 +2,12 @@ import * as React from "react";
 import Title from "../Demo/Title";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as MaterialLink } from "@mui/material";
-import TreeDrawer from "./Tree/TreeDrawer";
 
-export default function AssetList() {
+export default function ContentList() {
   return (
     <React.Fragment>
-      <Title>Asset List</Title>
-      <MaterialLink component={RouterLink} to="/contents">Contents</MaterialLink>
-      <TreeDrawer />
+      <Title>Content List</Title>
+      <MaterialLink component={RouterLink} to="/assets">Assets</MaterialLink>
     </React.Fragment>
   );
 }

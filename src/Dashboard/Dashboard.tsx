@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import DashboardDrawerLeft from './DashboardDrawerLeft';
+import DashboardDrawer from './DashboardDrawer';
 import DashboardContentBox from '../Content/ContentArea';
 import TopBar from './TopBar';
 import ContentArea from '../Content/ContentArea';
@@ -25,7 +25,7 @@ function DashboardContent() {
       <Box sx={{ display: 'flex' }}>
        <CssBaseline />
        <TopBar open={open} setOpen={setOpen}/>
-       <DashboardDrawerLeft open={open} setOpen={setOpen}/>
+       <DashboardDrawer open={open} setOpen={setOpen}/>
         <Box
           component="main"
           sx={{

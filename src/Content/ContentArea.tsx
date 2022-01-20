@@ -8,6 +8,7 @@ import Assets from "../Asset/AssetList";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import ContentList from "./ContentList";
 
 function Copyright(props: any) {
   return (
@@ -41,7 +42,7 @@ export default function ContentArea() {
               height: 240,
             }}
           >
-            <Assets />
+            <ContentList />
           </Paper>
         </Grid>
         {/* Chart */}

@@ -18,8 +18,6 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { Link } from "react-router-dom";
-//import MaterialLink from '@mui/material/Link';
-
 
 const mainListItems = (
   <div>
@@ -46,16 +44,23 @@ function Entry(props: EntryProps) {
   );
 }
 
-export const secondaryListItems = (
+export const adminListItems = (
   <div>
-    <ListSubheader inset>Admin Area</ListSubheader>
-    <Entry name="Users" path="users" />
-    <Entry name="Groups" path="groups" />
-    <Entry name="Roles" path="roles" />
+    <ListSubheader inset>Admin</ListSubheader>
     <Entry name="Extensions" path="extensions" />
     <Entry name="API Keys" path="auth" />
   </div>
 );
+
+export const aclListItems = (
+  <div>
+    <ListSubheader inset>ACL</ListSubheader>
+    <Entry name="Users" path="users" />
+    <Entry name="Groups" path="groups" />
+    <Entry name="Roles" path="roles" />
+  </div>
+);
+
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -92,7 +97,7 @@ type DashboardDrawerLeftProps = {
   setOpen: Function;
 };
 
-export default function DashboardDrawerLeft({
+export default function DashboardDrawer({
   open,
   setOpen,
 }: DashboardDrawerLeftProps) {
@@ -116,7 +121,9 @@ export default function DashboardDrawerLeft({
       <Divider />
       <List>{mainListItems}</List>
       <Divider />
-      <List>{secondaryListItems}</List>
+      <List>{aclListItems}</List>
+      <Divider />
+      <List>{adminListItems}</List>
     </Drawer>
   );
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
-import { drawerWidth } from "./DashboardDrawerLeft";
+import { drawerWidth } from "./DashboardDrawer";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from '@mui/material/Typography';
