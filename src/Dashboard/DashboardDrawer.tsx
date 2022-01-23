@@ -48,6 +48,7 @@ export const adminListItems = (
   <div>
     <ListSubheader inset>Admin</ListSubheader>
     <Entry name="Extensions" path="extensions" />
+    <Entry name="Pipelines" path="pipelines" />
     <Entry name="API Keys" path="auth" />
   </div>
 );

@@ -5,6 +5,8 @@ import { styled } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 
 import { ReactComponent as LoomSVG } from "../img/logo_word_min.svg";
+import  LoomImg from "../img/logo_word_3d.png";
+
 
 function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
@@ -84,8 +86,23 @@ const LoomLogoComponent = styled(LoomSVG)(
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-
+  filter: saturate(0%) brightness(298%)drop-shadow(-2px 0px 6px #666666);
   
+  width: 600px;
+  height: 200px;
+  z-index: 99999999;
+  `
+);
+
+const LogoImgComponent = () => {
+  return <img src={LoomImg} alt="Logo" />;
+}
+
+const LoomLogoImageComponent = styled(LogoImgComponent)(
+  ({ theme }) => `
+  margin: 0;
+  position: absolute;
+  top: 50%;
   width: 600px;
   height: 200px;
   z-index: 99999999;
@@ -100,7 +117,7 @@ export default function WelcomePage() {
           <BluredArea2 />
         </BluredArea>
         <LogoArea>
-          <LoomLogoComponent />
+          <LoomLogoImageComponent />
         </LogoArea>
       </FullScreen>
     </React.Fragment>

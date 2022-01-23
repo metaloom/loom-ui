@@ -9,6 +9,7 @@ import DashboardContentBox from "../Content/ContentArea";
 import TopBar from "./TopBar";
 import ContentArea from "../Content/ContentArea";
 import AssetArea from "../Asset/AssetArea";
+import PipelineArea from "../Pipeline/PipelineArea";
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
@@ -36,6 +37,7 @@ function DashboardContent() {
           <Route path="content2" element={<DashboardContentBox />} />
           <Route path="content3" element={<DashboardContentBox />} />
           <Route path="assets" element={<AssetArea />} />
+          <Route path="pipelines" element={<PipelineArea />} />
         </Routes>
       </Box>
     </Box>
