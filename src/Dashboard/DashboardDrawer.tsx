@@ -17,6 +17,8 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import Typography from "@mui/material/Typography";
+
 import { Link } from "react-router-dom";
 
 const mainListItems = (
@@ -112,6 +114,7 @@ export default function DashboardDrawer({
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
+          height: "130px",
           px: [1],
         }}
       >

@@ -21,7 +21,7 @@ const mdTheme = createTheme({
   },
   typography: {
     fontFamily: "Roboto",
-  },
+  }
 });
 
 function App() {
