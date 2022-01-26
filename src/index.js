@@ -7,26 +7,13 @@ import Login from "./Login/Login";
 import WelcomePage from "./Welcome/WelcomePage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { shadows } from "@mui/system";
+import AppTheme from "./Theme";
 
-//const theme = createMuiTheme();
-
-const mdTheme = createTheme({
-  palette: {
-    primary: {
-      main: "#000",
-    },
-    secondary: {
-      main: "#ccc",
-    },
-  },
-  typography: {
-    fontFamily: "Roboto",
-  }
-});
+const theme = AppTheme();
 
 function App() {
   return (
-    <ThemeProvider theme={mdTheme}>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
           <Route path="/dash/*" element={<Dashboard />} />
