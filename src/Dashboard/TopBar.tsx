@@ -91,7 +91,6 @@ function MainSearchBar2() {
         id="multiple-limit-tags"
         options={options}
         getOptionLabel={(option) => option.label}
-        //defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
         renderInput={(params) => (
           <TextField {...params} label="limitTags" placeholder="Favorites" />
         )}
@@ -172,7 +171,7 @@ export default function TopBar({ open, setOpen }: TopBarProps) {
   const theme = useTheme();
 
   return (
-    <AppBar position="absolute" open={open}>
+    <AppBar position="fixed" open={open}>
       <StyledToolbar
         sx={{
           display: "flex",
@@ -203,10 +202,12 @@ export default function TopBar({ open, setOpen }: TopBarProps) {
               <MenuIcon />
             </IconButton>
           </Grid>
-          <Grid item xs={9}
-          sx={{
-            ...(!open && { paddingLeft: "10px" }),
-          }}
+          <Grid
+            item
+            xs={9}
+            sx={{
+              ...(!open && { paddingLeft: "10px" }),
+            }}
           >
             <MainSearchBar />
           </Grid>
@@ -226,22 +227,12 @@ export default function TopBar({ open, setOpen }: TopBarProps) {
           </Grid>
 
           {/*Second Row*/}
-          <Grid
+          <Grid position="relative"
             item
             xs={12}
             sx={{
+              left: 90,
               backgroundColor: "green",
-              transition: theme.transitions.create(["width", "margin", "padding"], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-              }),
-              ...(!open && {
-                paddingLeft: "70px",
-                transition: theme.transitions.create(["width", "margin", "padding"], {
-                  easing: theme.transitions.easing.sharp,
-                  duration: theme.transitions.duration.enteringScreen,
-                })                
-              }),
             }}
           >
             <BreadcrumbArea />

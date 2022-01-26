@@ -38,37 +38,21 @@ function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   return (
     <Grid container sx={{ display: "flex" }}>
-        <CssBaseline />
-        <DashboardDrawer open={open} setOpen={setOpen} />
-
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            marginTop: "100px",
-            overflow: "auto",
-          }}
-        >
-          <TopBar open={open} setOpen={setOpen} />
-
-          <Container maxWidth="lg" sx={{ mt: 20, mb: 4 }}>
-            <Grid item xs={12}>
-              <Routes>
-                <Route path="contents" element={<ContentArea />} />
-                <Route path="content2" element={<DashboardContentBox />} />
-                <Route path="content3" element={<DashboardContentBox />} />
-                <Route path="assets" element={<AssetArea />} />
-                <Route path="pipelines" element={<PipelineArea />} />
-              </Routes>
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
-        </Box>
+      <CssBaseline />
+      <DashboardDrawer open={open} setOpen={setOpen} />
+      <TopBar open={open} setOpen={setOpen} />
+      <Container maxWidth="lg" sx={{ mt: 20, mb: 4 }}>
+        <Grid item xs={12}>
+          <Routes>
+            <Route path="contents" element={<ContentArea />} />
+            <Route path="content2" element={<DashboardContentBox />} />
+            <Route path="content3" element={<DashboardContentBox />} />
+            <Route path="assets" element={<AssetArea />} />
+            <Route path="pipelines" element={<PipelineArea />} />
+          </Routes>
+        </Grid>
+        <Copyright sx={{ pt: 4 }} />
+      </Container>
     </Grid>
   );
 }
