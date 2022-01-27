@@ -19,20 +19,24 @@ import ReactFlow, {
 } from "react-flow-renderer";
 
 const elements = [
-  { id: "1", data: { label: "Node 1" }, position: { x: 250, y: 5 } },
-  // you can also pass a React component as a label
-  { id: "2", data: { label: <div>Node 2</div> }, position: { x: 100, y: 100 } },
-  { id: "e1-2", source: "1", target: "2", animated: true },
+  { id: "src", data: { label: "Source" }, position: { x: 250, y: 5 } },
+  { id: "fp", data: { label: <div>Fingerprint</div> }, position: { x: 100, y: 100 } },
+  { id: "hash", data: { label: <div>Hash</div> }, position: { x: 100, y: 100 } },
+  { id: "resize", data: { label: <div>Resize</div> }, position: { x: 100, y: 100 } },
+  { id: "filter", data: { label: <div>Filter</div> }, position: { x: 100, y: 100 } },
+  { id: "s3", data: { label: <div>S3</div> }, position: { x: 100, y: 100 } },
+
+  { id: "e1", source: "src", target: "filter", animated: true },
+  { id: "e2", source: "filter", target: "hash", animated: true },
+  { id: "e3", source: "filter", target: "resize", animated: true },
+  { id: "e4", source: "filter", target: "fp", animated: true },
+  { id: "e5", source: "resize", target: "s3", animated: true },
 ];
 
-const BasicFlow = () => <ReactFlow style={{height: 400, width: 400, border: "1px solid blue"}} elements={elements} />;
-
+const BasicFlow = () => <ReactFlow style={{height: 700, width: 1500}} elements={elements} />;
 
 const StyledFlow = styled(BasicFlow)(
   ({ theme }) => `
-  //width: 400;
-  //height: 400;
-  border: "1px solid blue";
 `
 );
 

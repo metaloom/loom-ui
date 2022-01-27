@@ -7,23 +7,21 @@ import AssetMetadataDrawer from "./AssetMetadataDrawer";
 
 export default function AssetArea() {
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb:4 }}>
-      <Grid container spacing={1}>
-        {/* Assets */}
-        <Grid item xs={12} md={8} lg={12}>
+    <Grid container spacing={3}>
+      {[...Array(36)].map((x, i) => (
+        <Grid item xs={3}>
           <Paper
             sx={{
               p: 2,
-              display: "flex",
-              flexDirection: "column",
-              height: 440,
+              height: 200,
             }}
           >
             <AssetList />
           </Paper>
         </Grid>
-      </Grid>
-      <AssetMetadataDrawer/>
-    </Container>
+      ))}
+    </Grid>
   );
+
+  //  <AssetMetadataDrawer/>
 }

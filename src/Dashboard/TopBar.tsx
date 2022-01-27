@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
+import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
 import Typography from "@mui/material/Typography";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -22,6 +23,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MailIcon from "@mui/icons-material/Mail";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import DashboardDrawer from "./DashboardDrawer";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -30,14 +32,13 @@ interface AppBarProps extends MuiAppBarProps {
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
+  zIndex: theme.zIndex.drawer - 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth(),
-    width: `calc(100% - ${drawerWidth()}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -56,22 +57,21 @@ function BreadcrumbArea() {
       item
       xs={12}
       sx={{
-        padding: "10px",
-        backgroundColor: "#a3a3a3",
+        padding: "8px",
       }}
     >
       <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="/">
-          MUI
+          Root
         </Link>
         <Link
           underline="hover"
           color="inherit"
           href="/getting-started/installation/"
         >
-          Core
+          L1
         </Link>
-        <Typography color="text.primary">Breadcrumbs</Typography>
+        <Typography color="text.primary">L2</Typography>
       </Breadcrumbs>
     </Grid>
   );
@@ -164,7 +164,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   paddingBottom: 0,
   "@media all": {
     minHeight: 100,
-    paddingLeft: "110px",
+    //paddingLeft: "210px",
     paddingRight: "0px",
   },
 }));
@@ -276,6 +276,7 @@ export default function TopBar({ open, setOpen }: TopBarProps) {
 
   return (
     <AppBar position="fixed" open={open}>
+      <DashboardDrawer open={open} setOpen={setOpen} />
       <StyledToolbar
         sx={{
           display: "flex",
@@ -283,88 +284,84 @@ export default function TopBar({ open, setOpen }: TopBarProps) {
           paddingBottom: "0px",
           ...(open && {
             "@media all": {
-              paddingLeft: "0px",
-              paddingRight: "0px",
+              //   paddingLeft: "0px",
+              //   paddingRight: "0px",
             },
           }),
         }}
       >
-        <Grid container spacing={0} sx={{
-          
-        }}>
-          <Grid item xs={12}>
-          <Grid container>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              sx={{ mr: 2,
-                ...(open && { display: "none" })
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
-              Loom
-            </Typography>
-            <Grid item xs={6}>
-            <MainSearchBar/>
-            </Grid>
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                size="large"
-                aria-label="show 4 new mails"
-                color="inherit"
-              >
-                <Badge badgeContent={4} color="error">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
+        <Grid container spacing={0}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              paddingLeft: `${drawerWidth()}px`,
+              paddingRight: "40px",
+            }}
+          >
+            <Grid container>
+              <Grid item xs={6}>
+                <MainSearchBar />
+              </Grid>
+              <Box sx={{ flexGrow: 1 }} />
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show 4 new mails"
+                  color="inherit"
+                >
+                  <Badge badgeContent={4} color="error">
+                    <MailIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={17} color="error">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Box>
+              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <MoreIcon />
+                </IconButton>
+              </Box>
             </Grid>
           </Grid>
-          <Grid sx={{ width: "100%" }} />
-          <Grid item xs={12}>
+          <Grid
+            item
+            xs={12}
+          >
+            <Divider />
+            </Grid>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              paddingLeft: `${drawerWidth()}px`,
+            }}
+          >
             {/*Second Row*/}
             <BreadcrumbArea />
           </Grid>

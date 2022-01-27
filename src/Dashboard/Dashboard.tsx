@@ -8,13 +8,13 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import DashboardDrawer from "./DashboardDrawer";
+
 import DashboardContentBox from "../Content/ContentArea";
 import TopBar from "./TopBar";
 import ContentArea from "../Content/ContentArea";
 import AssetArea from "../Asset/AssetArea";
 import PipelineArea from "../Pipeline/PipelineArea";
-import { styled } from "@mui/material/styles";
+import { styled, alpha, useTheme } from "@mui/material/styles";
 
 function Copyright(props: any) {
   return (
@@ -26,7 +26,7 @@ function Copyright(props: any) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://metaloom.io/">
-        Loom
+        MetaLoom
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -36,12 +36,30 @@ function Copyright(props: any) {
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
+  const theme = useTheme();
+
   return (
     <Grid container sx={{ display: "flex" }}>
       <CssBaseline />
-      <DashboardDrawer open={open} setOpen={setOpen} />
+
       <TopBar open={open} setOpen={setOpen} />
-      <Container maxWidth="lg" sx={{ mt: 20, mb: 4 }}>
+      <Container maxWidth="lg" sx={{ mt: 20, 
+        mb: 4, 
+        ml: 30,
+        transition: theme.transitions.create(["width", "margin"], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        
+        ...(!open && {
+          transition: theme.transitions.create(["width", "margin"], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+          ml: 15
+         }) 
+        
+        }}>
         <Grid item xs={12}>
           <Routes>
             <Route path="contents" element={<ContentArea />} />
