@@ -86,8 +86,7 @@ function MainSearchBar2() {
   return (
     <Box
       sx={{
-        padding: "10px",
-        backgroundColor: "green",
+        padding: "10px"
       }}
     >
       <Autocomplete

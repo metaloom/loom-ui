@@ -13,6 +13,7 @@ import DashboardContentBox from "../Content/ContentArea";
 import TopBar from "./TopBar";
 import ContentArea from "../Content/ContentArea";
 import AssetArea from "../Asset/AssetArea";
+import UserArea from "../User/UserArea";
 import PipelineArea from "../Pipeline/PipelineArea";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 
@@ -66,6 +67,7 @@ function DashboardContent() {
             <Route path="content2" element={<DashboardContentBox />} />
             <Route path="content3" element={<DashboardContentBox />} />
             <Route path="assets" element={<AssetArea />} />
+            <Route path="users" element={<UserArea />} />
             <Route path="pipelines" element={<PipelineArea />} />
           </Routes>
         </Grid>
