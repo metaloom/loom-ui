@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect} from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Chart from "../Demo/Chart";
@@ -10,7 +10,16 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import ContentList from "./ContentList";
 
-export default function ContentArea() {
+type UserAreaProps = {
+  setBreadcrumb: Function;
+};
+
+export default function ContentArea({setBreadcrumb}: UserAreaProps) {
+
+  useEffect(() => {
+    setBreadcrumb([{ key: "Dash", path: "/dash" }, { key: "Contents", path: "/contents" }]);
+  }, []);
+
   return (
     <Grid container spacing={3}>
       {/* Assets */}

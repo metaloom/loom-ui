@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import UserListItem from "./UserListItem";
@@ -16,6 +16,7 @@ import Grow from "@mui/material/Grow";
 import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
+import BreadcrumbArea, { IBreadcrumb } from "../Dashboard/BreadcrumbArea";
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -58,11 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Filter1Button() {
-  const options = [
-    "Create a merge commit",
-    "Squash and merge",
-    "Rebase and merge",
-  ];
+  const options = ["Disabled", "Enabled"];
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -174,7 +171,7 @@ function HeaderArea() {
       sx={{
         padding: 3,
         paddingRight: 5,
-        margin: 1,
+        ml: 4,
         borderRadius: "20px",
         backgroundColor: theme.palette.primary.main,
       }}
@@ -193,7 +190,7 @@ function HeaderArea() {
           Filter3
         </Grid>
         <Grid item xs={1}>
-          <Button variant="contained" endIcon={<SendIcon />}>
+          <Button variant="contained" href="users/new" endIcon={<SendIcon />}>
             New
           </Button>
         </Grid>
@@ -202,12 +199,21 @@ function HeaderArea() {
   );
 }
 
-export default function UserArea() {
+type UserAreaProps = {
+  setBreadcrumb: Function;
+};
+
+export default function UserArea({setBreadcrumb}: UserAreaProps) {
+
+  useEffect(() => {
+    setBreadcrumb([{ key: "Dash", path: "/dash" }, { key: "Users", path: "/users" }]);
+  }, []);
+
   return (
     <Grid container spacing={3}>
       <HeaderArea />
       {[...Array(36)].map((x, i) => (
-        <UserListItem />
+        <UserListItem key={i} />
       ))}
     </Grid>
   );

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import { drawerWidth } from "./DashboardDrawer";
@@ -7,11 +7,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
 import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
-import Typography from "@mui/material/Typography";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -24,6 +21,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import DashboardDrawer from "./DashboardDrawer";
+import BreadcrumbArea, { IBreadcrumb  }  from "./BreadcrumbArea";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -49,33 +47,9 @@ const AppBar = styled(MuiAppBar, {
 type TopBarProps = {
   open: boolean;
   setOpen: Function;
+  breadcrumb: IBreadcrumb[] | [];
+  setBreadcrumb: Function;
 };
-
-function BreadcrumbArea() {
-  return (
-    <Grid
-      item
-      xs={12}
-      sx={{
-        padding: "8px",
-      }}
-    >
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
-          Root
-        </Link>
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/getting-started/installation/"
-        >
-          L1
-        </Link>
-        <Typography color="text.primary">L2</Typography>
-      </Breadcrumbs>
-    </Grid>
-  );
-}
 
 const options = [
   { label: "The Godfather", id: 1 },
@@ -86,7 +60,7 @@ function MainSearchBar2() {
   return (
     <Box
       sx={{
-        padding: "10px"
+        padding: "10px",
       }}
     >
       <Autocomplete
@@ -168,7 +142,12 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   },
 }));
 
-export default function TopBar({ open, setOpen }: TopBarProps) {
+export default function TopBar({
+  open,
+  setOpen,
+  breadcrumb,
+  setBreadcrumb,
+}: TopBarProps) {
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -348,12 +327,9 @@ export default function TopBar({ open, setOpen }: TopBarProps) {
               </Box>
             </Grid>
           </Grid>
-          <Grid
-            item
-            xs={12}
-          >
+          <Grid item xs={12}>
             <Divider />
-            </Grid>
+          </Grid>
           <Grid
             item
             xs={12}
@@ -362,7 +338,10 @@ export default function TopBar({ open, setOpen }: TopBarProps) {
             }}
           >
             {/*Second Row*/}
-            <BreadcrumbArea />
+            <BreadcrumbArea
+              breadcrumb={breadcrumb}
+              setBreadcrumb={setBreadcrumb}
+            />
           </Grid>
         </Grid>
       </StyledToolbar>

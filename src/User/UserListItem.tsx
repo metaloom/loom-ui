@@ -3,6 +3,7 @@ import Title from "../Demo/Title";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { Link as RouterLink } from "react-router-dom";
+import Gravatar from 'react-gravatar';
 import { Link as MaterialLink } from "@mui/material";
 
 export default function UserListItem() {
@@ -15,8 +16,11 @@ export default function UserListItem() {
         }}
       >
         <Grid container spacing={0}>
-          <Grid item xs={2}>
-            <Title>Gravatar</Title>
+        <Grid item xs={1}>
+            <Gravatar alt="Joe Doe" email="j.schueth@jotschi.de" size={50} />
+          </Grid>
+          <Grid item xs={1}>
+            <Title>Username</Title>
           </Grid>
           <Grid item xs={2}>
             <Title>User Joe Doe</Title>

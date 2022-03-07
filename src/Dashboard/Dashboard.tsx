@@ -4,6 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
+import { IBreadcrumb } from "./BreadcrumbArea";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -14,6 +15,8 @@ import TopBar from "./TopBar";
 import ContentArea from "../Content/ContentArea";
 import AssetArea from "../Asset/AssetArea";
 import UserArea from "../User/UserArea";
+import UserNew from "../User/UserNew";
+import UserEdit from "../User/UserEdit";
 import PipelineArea from "../Pipeline/PipelineArea";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 
@@ -37,37 +40,44 @@ function Copyright(props: any) {
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
+  const [breadcrumb, setBreadcrumb] = React.useState<IBreadcrumb[] | []>([]);
+
   const theme = useTheme();
 
   return (
     <Grid container sx={{ display: "flex" }}>
       <CssBaseline />
 
-      <TopBar open={open} setOpen={setOpen} />
-      <Container maxWidth="lg" sx={{ mt: 20, 
-        mb: 4, 
-        ml: 30,
-        transition: theme.transitions.create(["width", "margin"], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-        
-        ...(!open && {
+      <TopBar open={open} setOpen={setOpen} breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
+      <Container
+        maxWidth="lg"
+        sx={{
+          mt: 20,
+          mb: 4,
+          ml: 30,
           transition: theme.transitions.create(["width", "margin"], {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
+            duration: theme.transitions.duration.leavingScreen,
           }),
-          ml: 15
-         }) 
-        
-        }}>
+
+          ...(!open && {
+            transition: theme.transitions.create(["width", "margin"], {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
+            ml: 15,
+          }),
+        }}
+      >
         <Grid item xs={12}>
           <Routes>
-            <Route path="contents" element={<ContentArea />} />
-            <Route path="content2" element={<DashboardContentBox />} />
-            <Route path="content3" element={<DashboardContentBox />} />
-            <Route path="assets" element={<AssetArea />} />
-            <Route path="users" element={<UserArea />} />
+            <Route path="contents" element={<ContentArea setBreadcrumb={setBreadcrumb} />} />
+            <Route path="content2" element={<DashboardContentBox setBreadcrumb={setBreadcrumb} />} />
+            <Route path="content3" element={<DashboardContentBox setBreadcrumb={setBreadcrumb} />} />
+            <Route path="assets" element={<AssetArea setBreadcrumb={setBreadcrumb}  />} />
+            <Route path="users" element={<UserArea setBreadcrumb={setBreadcrumb} />} />
+            <Route path="users/:id" element={<UserEdit />} />
+            <Route path="users/new" element={<UserNew />} />
             <Route path="pipelines" element={<PipelineArea />} />
           </Routes>
         </Grid>

@@ -1,11 +1,20 @@
-import * as React from "react";
+import React,{useEffect} from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import AssetList from "../Asset/AssetList";
 import Container from "@mui/material/Container";
 import AssetMetadataDrawer from "./AssetMetadataDrawer";
 
-export default function AssetArea() {
+type AssetAreaProps = {
+  setBreadcrumb: Function;
+};
+
+export default function AssetArea({setBreadcrumb}: AssetAreaProps) {
+
+  useEffect(() => {
+    setBreadcrumb([{ key: "Dash", path: "/dash" }, { key: "Assets", path: "/assets" }]);
+  }, []);
+
   return (
     <Grid container spacing={3}>
       {[...Array(36)].map((x, i) => (
