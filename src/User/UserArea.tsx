@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import UserListItem from "./UserListItem";
+import UserListItem, { UserProps, UserListItemProps } from "./UserListItem";
 import Container from "@mui/material/Container";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -17,6 +17,7 @@ import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import BreadcrumbArea, { IBreadcrumb } from "../Dashboard/BreadcrumbArea";
+import { LastPageRounded } from "@mui/icons-material";
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -203,17 +204,27 @@ type UserAreaProps = {
   setBreadcrumb: Function;
 };
 
-export default function UserArea({setBreadcrumb}: UserAreaProps) {
-
+export default function UserArea({ setBreadcrumb }: UserAreaProps) {
   useEffect(() => {
-    setBreadcrumb([{ key: "Dash", path: "/dash" }, { key: "Users", path: "/users" }]);
+    setBreadcrumb([
+      { key: "Dash", path: "/dash" },
+      { key: "Users", path: "/users" },
+    ]);
   }, []);
+
+  let user: UserProps = {
+    username: "joeDoe",
+    email: "git@jotschi.de",
+    firstname: "Joe",
+    lastname: "Doe",
+    password: "joedoe",
+  };
 
   return (
     <Grid container spacing={3}>
       <HeaderArea />
       {[...Array(36)].map((x, i) => (
-        <UserListItem key={i} />
+        <UserListItem key={i} user={user} id="{i}" />
       ))}
     </Grid>
   );
